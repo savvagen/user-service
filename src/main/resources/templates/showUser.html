@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>Id</td>
+        <td th:text="${user.user_id}"></td>
+    </tr>
+    <p></p>
+    <tr>
+        <td>User Name</td>
+        <td th:text="${user.username}" ></td>
+    </tr>
+    <p></p>
+    <tr>
+        <td>Contact Email</td>
+        <td th:text="${user.email}"></td>
+    </tr>
+    <p></p>
+    <tr>
+        <td>Contact Telephone</td>
+        <td th:text="${user.telephone}"></td>
+    </tr>
+    <p></p>
+</table>
+<p></p>
+<a href="showUser.html" th:href="@{/users}">Back</a>
+</body>
+</html>

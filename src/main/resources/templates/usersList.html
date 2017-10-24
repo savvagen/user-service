@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+<h1>Welcome!</h1>
+<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
+<!--<a href="/signUp">Register</a>-->
+<p></p>
+<div th:if="${not #lists.isEmpty(users)}">
+    <h1>Users List</h1>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Telephone</th>
+            <th>Status</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td><a th:href="@{/users/{id}(id=${user.user_id})}" th:text="${user.user_id}"></a></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.telephone}"></td>
+            <td th:text="${user.status}"></td>
+        </tr>
+    </table>
+</div>
+<p></p>
+<a href="home.html" th:href="@{/}">Back to Home</a>
+<p></p>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>
