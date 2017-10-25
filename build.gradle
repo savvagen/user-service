@@ -8,8 +8,13 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
+        classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
+
+
+group = 'savva'
+
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -34,6 +39,19 @@ jar {
 war {
     baseName = 'rest-service'
     version =  '0.5.0'
+}
+
+apply plugin: 'docker'
+
+task buildDocker(type: Docker, dependsOn: build) {
+    applicationName = jar.baseName
+    dockerfile = file('Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into "${stageDir}/build/libs"
+        }
+    }
 }
 
 
@@ -67,6 +85,7 @@ dependencies {
     compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.3.RELEASE'
     compile("org.springframework.boot:spring-boot-starter-security")
 
+    compile group: 'org.webjars', name: 'jquery', version: '3.2.1'
 
     //HTML templates
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -81,6 +100,9 @@ dependencies {
     compile group: 'org.hamcrest', name: 'java-hamcrest', version: '2.0.0.0'
 
 }
+
+
+
 
 
 

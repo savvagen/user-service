@@ -3,11 +3,15 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Spring Security Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!--<script type="text/javascript" th:src="@{/userStatus.js}"></script>-->
+    <script type="text/javascript" src="js/userStatus.js"></script>
 </head>
 <body>
 <h1>Welcome!</h1>
 <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
-<!--<a href="/signUp">Register</a>-->
+<p></p>
+<p>Click <a th:href="@{/users/register}">here</a> to register a new user.</p>
 <p></p>
 <div th:if="${not #lists.isEmpty(users)}">
     <h1>Users List</h1>
@@ -18,13 +22,19 @@
             <th>Email</th>
             <th>Telephone</th>
             <th>Status</th>
+            <th>Job</th>
+            <th>Actions</th>
         </tr>
-        <tr th:each="user : ${users}">
+        <tr th:each="user: ${users}">
             <td><a th:href="@{/users/{id}(id=${user.user_id})}" th:text="${user.user_id}"></a></td>
             <td th:text="${user.username}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.telephone}"></td>
-            <td th:text="${user.status}"></td>
+            <td class="user-status" th:id="${user.status_id}"></td>
+            <th><a th:href="@{/users/{id}/job(id=${user.user_id})}">View Jobs</a></th>
+            <th><a th:href="@{/users/{id}/edit(id=${user.user_id})}">Edit</a></th>
+            <th></th>
+            <th><a th:href="@{/users/{id}/remove(id=${user.user_id})}">Remove</a></th>
         </tr>
     </table>
 </div>

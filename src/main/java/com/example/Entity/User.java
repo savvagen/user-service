@@ -22,38 +22,39 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(dataType = "integer", value = "Customer ID")
-    public @Getter @Setter Integer user_id;
+    private  @Getter @Setter Integer user_id;
 
     @Column
-    public @Getter @Setter String username;
+    private @Getter @Setter String username;
 
     @Column
     @ApiModelProperty(dataType = "string", value = "Email Address")
-    public @Getter @Setter String email;
+    private @Getter @Setter String email;
 
     @Column
-    //@JsonIgnore
-    public @Getter @Setter String password;
+    @JsonIgnore
+    private @Getter @Setter String password;
 
     @Column
-    public @Getter @Setter String telephone;
+    private @Getter @Setter String telephone;
 
     @Column
     @GeneratedValue
-    public @Getter @Setter Timestamp registration_date;
+    private @Getter @Setter Timestamp registration_date;
 
+    @JoinColumn(name = "user_status", referencedColumnName = "status id")
     @Column
-    public @Getter @Setter String status;
+    private @Getter @Setter Integer status_id;
 
     public User(){
     }
 
-    public User(String username, String email, String password, String telephone, String status) {
+    public User(String username, String email, String password, String telephone, Integer status_id) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
-        this.status = status;
+        this.status_id = status_id;
     }
 
 

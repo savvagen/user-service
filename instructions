@@ -1,0 +1,42 @@
+************************************* USERS DB **********************************************
+
+CREATE TABLE user_status (
+ status_id int(11) NOT NULL AUTO_INCREMENT,
+ status varchar(50) NOT NULL,
+ PRIMARY KEY (status_id),
+ UNIQUE(status_id)
+);
+
+CREATE TABLE users (
+ user_id int(11) NOT NULL AUTO_INCREMENT,
+ username varchar(255) NOT NULL,
+ email varchar(255) NOT NULL,
+ password varchar(50) NOT NULL,
+ telephone varchar(50) NOT NULL,
+ registration_date TIMESTAMP,
+ status_id int,
+ PRIMARY KEY (user_id),
+ FOREIGN KEY (status_id) REFERENCES user_status(status_id),
+ UNIQUE (email)
+);
+
+CREATE TABLE jobs (
+ job_id int(11) NOT NULL AUTO_INCREMENT,
+ user_id int,
+ company varchar(45) NULL,
+ position varchar(45) NULL,
+ salary int(20) NULL,
+ responsibilities varchar(200) NULL,
+ age int(6) NULL,
+ PRIMARY KEY (job_id),
+ FOREIGN KEY (user) REFERENCES users(user_id)
+);
+
+
+
+
+TRANSACTION;
+INSERT INTO users (user_id, username, email, password, telephone, status_id) VALUES ('1', 'Savva Genchevskiy', 'savva.genchevskiy@gmail.com', 's.g19021992qa', '+(380)97-547-57-17', '1');
+INSERT INTO jobs (job_id, user_id, company, position, salary, responsibilities, age) VALUES ('1', '1', 'Singree', 'QA Automation', '1200', 'Creates good Tests', '25');
+COMMIT;
+INSERT INTO user_status (status_id, status) VALUES ('1', 'Online');

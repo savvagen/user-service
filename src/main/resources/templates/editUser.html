@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/users/update}" th:object="${user}" method="post">
+    <!--<p>Id</p>-->
+    <input type="text" th:value="${user.user_id}" th:field="*{user_id}" style="display: none"/>
+    <p>First Name</p>
+    <input type="text" th:value="${user.username}" th:field="*{username}"/>
+    <p>Email</p>
+    <input type="email" th:value="${user.email}" th:field="*{email}"/>
+    <p>Password</p>
+    <input type="password" th:value="${user.password}" th:field="*{password}"/>
+    <p>Telephone</p>
+    <input type="text" th:value="${user.telephone}" th:field="*{telephone}"/>
+    <p>Choose Status</p>
+<!--    <input type="text" th:value="${user.status_id}" th:field="*{status_id}"/>-->
+    <select id="status" name="status" th:field="${user.status_id}">
+        <option value="0" th:disabled="true">Select status</option>
+        <option th:each="status: ${statuses}"
+                th:value="${status.status_id}"
+                th:text="${status.status}"></option>
+    </select>
+    <p></p>
+    <button type="submit">Save</button>
+</form>
+<table>
+    <tr>
+        <td><a href="home.html" th:href="@{/}">Back To Home</a></td>
+        <td><a href="usersList.html" th:href="@{/users}">Back to List</a> </td>
+    </tr>
+</table>
+
+</body>
+</html>

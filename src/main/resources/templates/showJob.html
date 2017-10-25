@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+<p></p>
+<div th:if="${not #lists.isEmpty(jobs)}">
+    <h1>Jobs List</h1>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Responsibilities</th>
+        </tr>
+        <tr th:each="job : ${jobs}">
+            <td></td>
+            <td th:text="${job.company}"></td>
+            <td th:text="${job.position}"></td>
+            <td th:text="${job.responsibilities}"></td>
+        </tr>
+    </table>
+</div>
+<p></p>
+<a href="home.html" th:href="@{/}">Back to Home</a>
+<p></p>
+<a href="showUser.html" th:href="@{/users}">Back to List</a>
+</body>
+</html>

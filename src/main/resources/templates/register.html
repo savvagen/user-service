@@ -15,7 +15,16 @@
     <p>Telephone</p>
     <input placeholder="Entrer Telephone" th:field="*{telephone}" type="text"/>
     <p>Status</p>
-    <input placeholder="Entrer your Status(Online\Offline)" th:field="*{status}" type="text"/>
+    <!--<input placeholder="Entrer your Status" th:field="*{status_id}" type="text"/>-->
+    <select id="status" name="status" th:field="${user.status_id}">
+        <option value="0" th:disabled="true">Select status</option>
+        <option th:each="status: ${statuses}"
+                th:value="${status.status_id}"
+                th:text="${status.status}"></option>
+    </select>
+    <p></p>
+
+
     <button type="submit">Register</button>
 </form>
 <p></p>

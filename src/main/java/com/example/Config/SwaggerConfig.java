@@ -35,7 +35,18 @@ public class SwaggerConfig {
 
     private Predicate<String> paths() {
         return or(regex("/"),
-                regex("/helloworld"));
+                regex("/helloworld"),
+                regex("/users.*/delete"),
+                regex("/helloworld.*"),
+                regex("/hello"),
+                regex("/greeting"),
+                regex("/status.*"),
+                regex("/users/all"),
+                regex("/users.*/jobs"),
+                regex("/users/job.*"),
+                regex("/users.*/status"),
+                regex("/status.*"),
+                regex("/users.*/status/current"));
                 /*regex("/users/add"),
                 regex("/users/add.*"),
                 regex("/users/remove.*"),
