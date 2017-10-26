@@ -3,36 +3,74 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Spring Security Example</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-<form action="#" th:action="@{/users/register}" th:object="${user}" method="post">
-    <p>First Name</p>
-    <input placeholder="Entrer User Name" th:field="*{username}" type="text"/>
-    <p>Email</p>
-    <input placeholder="Entrer Email Address" th:field="*{email}" type="email"/>
-    <p>Password</p>
-    <input placeholder="Entrer Password" th:field="*{password}" type="password"/>
-    <p>Telephone</p>
-    <input placeholder="Entrer Telephone" th:field="*{telephone}" type="text"/>
-    <p>Status</p>
-    <!--<input placeholder="Entrer your Status" th:field="*{status_id}" type="text"/>-->
-    <select id="status" name="status" th:field="${user.status_id}">
-        <option value="0" th:disabled="true">Select status</option>
-        <option th:each="status: ${statuses}"
-                th:value="${status.status_id}"
-                th:text="${status.status}"></option>
-    </select>
-    <p></p>
-
-
-    <button type="submit">Register</button>
+<form class="col s6" action="#" th:action="@{/users/register}" th:object="${user}" method="post">
+    <div class="row">
+        <div class="input-field col s4">
+            <input id="username" placeholder="Entrer User Name" th:field="*{username}" type="text" min="3" max="50" required="required" pattern="[A-Za-zА-Яа-я]{3,24} [A-Za-zА-Яа-я]{3,24}" class="validate"/>
+            <label for="username" data-error="Enter correct Username" data-success="right">First Name</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s4">
+            <input id="email" placeholder="Entrer Email Address" th:field="*{email}" type="email" required="required" maxlength="40" class="validate"/>
+            <label for="email" data-error="incorrect email format" data-success="right">Email</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s4">
+            <input id="password" placeholder="Entrer Password" th:field="*{password}" type="password" min="3" max="30" required="required" class="validate"/>
+            <label for="password" data-error="password should be more than 3 characters" data-success="right">Password</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s4">
+            <input id="telephone" placeholder="Entrer Telephone" th:field="*{telephone}" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" required="required" class="validate"/>
+            <label for="telephone" data-error="telephone format required: 097-547-57-17" data-success="right">Telephone</label>
+        </div>
+    </div>
+    <div class="row">
+        <div  class="dropdown col s1 center">
+            <label>Select your status</label>
+            <select class="dropdown-button btn" id="status" name="status" th:field="${user.status_id}">
+                <option value="0" th:disabled="true">Select status</option>
+                <option th:each="status: ${statuses}"
+                        th:value="${status.status_id}"
+                        th:text="${status.status}"></option>
+            </select>
+            <p></p>
+        </div>
+    </div>
+    <div>
+        <p></p>
+        <div class="waves-button-input center">
+            <button type="submit"  class="waves-effect waves-light btn-large center">
+                <i class="material-icons right">cloud</i>Register
+            </button>
+        </div>
+    </div>
 </form>
 <p></p>
-<tr>
-    <td><a href="home.html" th:href="@{/}">Back To Home</a></td>
-    <td><a href="usersList.html" th:href="@{/users}">Back to List</a> </td>
-</tr>
+<div class="waves-button-input center">
+    <tr>
+        <td>
+            <a class="btn waves-effect waves-light" href="home.html" th:href="@{/}">Back To Home</a></td>
+        <td>
+            <a class="btn waves-effect waves-light" href="usersList.html" th:href="@{/users}">Back to List</a> </td>
+    </tr>
+</div>
+
 <p></p>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/js/materialize.js"></script>
+<script src="/js/init.js"></script>
 
 </body>
 </html>

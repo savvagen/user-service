@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
     <title>Spring Security Example</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body>
-<h1>Welcome!</h1>
 
-<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
-<p>Click <a th:href="@{/users}">here</a> to see a Users List.</p>
+<body>
+
+
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br/>
+        <h1 class="header center orange-text">Welcome To User Service</h1>
+        <div class="row center">
+            <h5 class="header col s12 light">A modern web application to search af friends and jobs from the biggest IT Companies</h5>
+        </div>
+        <div class="row center">
+            <a href="#" th:href="@{/users}" class="btn-large waves-effect waves-light orange">Get Started</a>
+        </div>
+        <br/>
+        <div class="row center">
+            <a href="#" th:href="@{/hello}" class="btn-large waves-effect waves-light orange">See Greeting</a>
+        </div>
+    </div>
+</div>
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/js/materialize.js"></script>
+<script src="/js/init.js"></script>
+
 </body>
 </html>

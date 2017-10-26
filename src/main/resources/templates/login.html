@@ -4,19 +4,36 @@
 <head>
     <title>Spring Security Example </title>
 </head>
+
 <body>
+<br/>
+
+<form class="col s12" th:action="@{/login}" method="post">
+    <div class="row">
+        <div class="input-field col s6">
+            <input type="text" name="username" min="3" max="50" required="required" id="login" class="validate"/>
+            <label for="login">Enter Login </label>
+        </div>
+        <div class="input-field col s6">
+            <input type="password" name="password" max="30" min="3" required="required" id="pass"/>
+            <label for="pass">Enter Password</label>
+        </div>
+    </div>
+    <div class="waves-button-input center">
+        <input class="waves-effect waves-light btn center" type="submit" value="Sign In"/>
+    </div>
+</form>
+
+<p></p>
+
 <div th:if="${param.error}">
-    Invalid username and password.
+    Invalid username or password.
 </div>
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
 <p></p>
 <p>Go to <a th:href="@{/}">Home</a></p>
+
 </body>
 </html>

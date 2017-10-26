@@ -6,13 +6,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <!--<script type="text/javascript" th:src="@{/userStatus.js}"></script>-->
     <script type="text/javascript" src="js/userStatus.js"></script>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="home.html" th:href="@{/}" class="brand-logo">Home</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+            <li>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out" class="waves-effect waves-light btn"/>
+                </form>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+
+
 <h1>Welcome!</h1>
 <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
 <p></p>
-<p>Click <a th:href="@{/users/register}">here</a> to register a new user.</p>
-<p></p>
+<div>
+    <label><h5>Register a new user</h5></label>
+    <p></p>
+    <a class="btn waves-effect waves-light"  th:href="@{/users/register}">Register</a>
+    <p></p>
+</div>
+
 <div th:if="${not #lists.isEmpty(users)}">
     <h1>Users List</h1>
     <table>
@@ -24,6 +54,7 @@
             <th>Status</th>
             <th>Job</th>
             <th>Actions</th>
+            <th>Delete User</th>
         </tr>
         <tr th:each="user: ${users}">
             <td><a th:href="@{/users/{id}(id=${user.user_id})}" th:text="${user.user_id}"></a></td>
@@ -31,18 +62,24 @@
             <td th:text="${user.email}"></td>
             <td th:text="${user.telephone}"></td>
             <td class="user-status" th:id="${user.status_id}"></td>
-            <th><a th:href="@{/users/{id}/job(id=${user.user_id})}">View Jobs</a></th>
-            <th><a th:href="@{/users/{id}/edit(id=${user.user_id})}">Edit</a></th>
-            <th></th>
-            <th><a th:href="@{/users/{id}/remove(id=${user.user_id})}">Remove</a></th>
+            <th>
+                <a th:href="@{/users/{id}/job(id=${user.user_id})}">View Jobs</a>
+            </th>
+            <th>
+                <a th:href="@{/users/{id}/edit(id=${user.user_id})}"><i class="material-icons left">edit</i>Edit</a>
+            </th>
+            <th>
+                <a th:href="@{/users/{id}/remove(id=${user.user_id})}"><i class="material-icons left">error</i>Remove</a>
+            </th>
         </tr>
     </table>
 </div>
-<p></p>
-<a href="home.html" th:href="@{/}">Back to Home</a>
-<p></p>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+
+
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="/js/materialize.js"></script>
+<script src="/js/init.js"></script>
 </body>
 </html>
